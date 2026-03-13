@@ -1,13 +1,17 @@
-# AI Resume Analyzer 🤖
+# 🤖 AI Resume Analyzer
 
 An AI-powered resume analyzer built with React and the Claude API (Anthropic). Get instant ATS scores, skill gap analysis, and tailored improvement suggestions for any job description.
 
-![Dark Theme UI](https://img.shields.io/badge/Theme-Dark-1e293b?style=flat-square)
-![React](https://img.shields.io/badge/React-18-61dafb?style=flat-square&logo=react)
-![Vite](https://img.shields.io/badge/Vite-5-646cff?style=flat-square&logo=vite)
-![Claude API](https://img.shields.io/badge/Claude-Sonnet-7c3aed?style=flat-square)
+🔗 **Live Demo:** [ai-resume-analyzer-rho-seven.vercel.app](https://ai-resume-analyzer-rho-seven.vercel.app/)
 
-## Features
+[![React](https://img.shields.io/badge/React-18-61dafb?style=flat-square&logo=react)](https://reactjs.org/)
+[![Vite](https://img.shields.io/badge/Vite-5-646cff?style=flat-square&logo=vite)](https://vitejs.dev/)
+[![Claude API](https://img.shields.io/badge/Claude-Sonnet-7c3aed?style=flat-square)](https://www.anthropic.com/)
+[![Vercel](https://img.shields.io/badge/Deployed-Vercel-000000?style=flat-square&logo=vercel)](https://vercel.com/)
+
+---
+
+## ✨ Features
 
 - **Real AI Analysis** — Powered by Claude (Anthropic), not keyword matching
 - **Match Score (0–100%)** — Animated score meter with detailed explanation
@@ -19,14 +23,31 @@ An AI-powered resume analyzer built with React and the Claude API (Anthropic). G
 - **Mobile Responsive** — Works on all screen sizes
 - **Load Sample** — Demo mode with pre-filled resume + JD
 
-## Tech Stack
+---
 
-- React 18 + Vite 5
-- Anthropic Claude API (`claude-sonnet-4-20250514`)
-- Vercel Serverless Functions (for secure API key handling)
-- Pure CSS (no UI library)
+## 🏗️ Architecture
 
-## Project Structure
+```
+React Frontend → /api/analyze (Vercel Serverless Function) → Claude API
+```
+
+The API key is securely handled server-side via a Vercel serverless function — never exposed to the client.
+
+---
+
+## 🛠️ Tech Stack
+
+| Component | Technology |
+|-----------|-----------|
+| Frontend | React 18 + Vite 5 |
+| AI Model | Anthropic Claude (claude-sonnet-4-20250514) |
+| Backend | Vercel Serverless Functions |
+| Styling | Pure CSS (no UI library) |
+| Deployment | Vercel |
+
+---
+
+## 📁 Project Structure
 
 ```
 ai-resume-analyzer/
@@ -42,80 +63,61 @@ ai-resume-analyzer/
 └── README.md
 ```
 
-## Getting Started
+---
+
+## 🚀 Getting Started
 
 ### Prerequisites
 
 - Node.js 18+
 - An [Anthropic API key](https://console.anthropic.com/)
-- A [Vercel account](https://vercel.com/) (for deployment)
 
 ### Local Setup
 
 ```bash
 # 1. Clone the repo
-git clone https://github.com/YOUR_USERNAME/ai-resume-analyzer.git
+git clone https://github.com/PrateekKacham/ai-resume-analyzer.git
 cd ai-resume-analyzer
 
 # 2. Install dependencies
 npm install
 
-# 3. Create a local environment file
+# 3. Add your API key
 echo "ANTHROPIC_API_KEY=sk-ant-your-key-here" > .env.local
 
-# 4. Run the dev server
-npm run dev
-```
-
-> ⚠️ The `/api/analyze.js` serverless function won't run with plain `vite dev`.  
-> For local testing with the real API, use the Vercel CLI:
-
-```bash
+# 4. Run with Vercel CLI (required for serverless function)
 npm install -g vercel
 vercel dev
 ```
 
-This spins up both the Vite frontend and the serverless function locally on `http://localhost:3000`.
+> ⚠️ Use `vercel dev` instead of `npm run dev` to run the serverless function locally.
 
-## Vercel Deployment
+---
 
-### 1. Push to GitHub
+## ☁️ Deployment
 
-```bash
-git init
-git add .
-git commit -m "initial commit"
-git branch -M main
-git remote add origin https://github.com/YOUR_USERNAME/ai-resume-analyzer.git
-git push -u origin main
-```
-
-### 2. Deploy to Vercel
+This project is deployed on **Vercel** with a single command:
 
 ```bash
-vercel
+vercel --prod
 ```
 
-Or connect your GitHub repo directly in the [Vercel dashboard](https://vercel.com/new).
+Add `ANTHROPIC_API_KEY` in your Vercel project → **Settings → Environment Variables**.
 
-### 3. Add Environment Variable
+---
 
-In your Vercel project → **Settings** → **Environment Variables**:
+## 💡 How It Works
 
-| Name | Value |
-|------|-------|
-| `ANTHROPIC_API_KEY` | `sk-ant-...` |
-
-Click **Save**, then **Redeploy**.
-
-## How It Works
-
-1. User pastes resume + job description
-2. Frontend sends a POST to `/api/analyze` (the Vercel serverless function)
-3. The serverless function injects the API key and forwards the request to the Claude API
+1. User pastes their resume + a target job description
+2. Frontend sends a POST request to `/api/analyze`
+3. The serverless function securely calls the Claude API
 4. Claude returns a structured JSON analysis
-5. The app parses and renders the results across 5 tabs
+5. The app renders results across 5 tabs: Score, Skills, ATS, Suggestions, Tone
 
-## License
+---
 
-MIT
+## 👤 Author
+
+**Sai Vinayaka Venkata Prateek Kacham**  
+MS Information Systems, Northeastern University  
+[LinkedIn](https://linkedin.com/in/prateek-kacham-32ba5a338) · [GitHub](https://github.com/PrateekKacham) · kacham.sai@northeastern.edu
